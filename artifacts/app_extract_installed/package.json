@@ -1,0 +1,12 @@
+{
+  "name": "ellie-electron",
+  "version": "0.1.0",
+  "description": "Ellie Voice Assistant Desktop App",
+  "author": "Dr. John White",
+  "private": true,
+  "main": "dist/electron/main.js",
+  "type": "commonjs",
+  "dependencies": {
+    "tree-kill": "^1.2.2"
+  }
+}

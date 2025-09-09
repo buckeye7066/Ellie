@@ -1,0 +1,23 @@
+[
+  {
+    "id": "3066749e-0c07-4f63-9734-874967b6eaa5",
+    "userId": "local",
+    "text": "this is a system note",
+    "tags": null,
+    "createdAt": 1757204659913
+  },
+  {
+    "id": "699c7025-5811-450a-828c-4249a44cecfa",
+    "userId": "local",
+    "text": "autopilot test note",
+    "tags": null,
+    "createdAt": 1757262321453
+  },
+  {
+    "id": "b03330a7-6668-4b95-89dc-e751a3b58da6",
+    "userId": "local",
+    "text": "this is a test",
+    "tags": null,
+    "createdAt": 1757263207743
+  }
+]

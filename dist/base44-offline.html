@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ellie Offline Panel</title>
+    <style>
+      html, body { height: 100%; margin: 0; }
+      body { font-family: Inter, system-ui, Segoe UI, Arial; background:#0b0b0b; color:#eaeaea; }
+      .wrap { padding: 10px; }
+      .row { display:flex; gap:8px; margin:8px 0; }
+      input, button, select { background:#111; color:#eee; border:1px solid #333; border-radius:8px; padding:8px 10px; }
+      button { cursor:pointer; }
+      .log { height: 180px; overflow:auto; background:#0f0f0f; border:1px solid #222; border-radius:8px; padding:8px; font-size:12px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h3 style="margin:6px 0 8px 0;">Ellie Offline Controls</h3>
+      <div class="row">
+        <select id="action">
+          <option value="open">open</option>
+          <option value="switch">switch</option>
+          <option value="type">type</option>
+        </select>
+        <input id="target" placeholder="notepad | chrome | text" style="flex:1" />
+        <button id="send">Send</button>
+      </div>
+      <div class="row"><button id="ping">Ping Parent</button><button id="focus">Request Focus</button></div>
+      <div class="log" id="log"></div>
+    </div>
+    <script>
+      const log = (m)=>{ const el=document.getElementById('log'); const d=document.createElement('div'); d.textContent='>> '+m; el.appendChild(d); el.scrollTop=el.scrollHeight; };
+      document.getElementById('send').onclick = ()=>{
+        const action = document.getElementById('action').value;
+        const t = document.getElementById('target').value.trim();
+        const msg = { type:'action', action, target: action==='type'?undefined:t, text: action==='type'?t:undefined };
+        window.parent.postMessage(msg, '*');
+        log('sent '+JSON.stringify(msg));
+      };
+      document.getElementById('ping').onclick = ()=>{
+        window.parent.postMessage({ type:'ping', at: Date.now() }, '*');
+        log('ping sent');
+      };
+      document.getElementById('focus').onclick = ()=>{
+        window.focus();
+        log('focus requested');
+      };
+      window.addEventListener('message', (e)=>{
+        log('recv '+JSON.stringify(e.data));
+      });
+      log('offline panel ready');
+    </script>
+  </body>
+  </html>
+

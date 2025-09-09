@@ -1,0 +1,25 @@
+directories:
+  output: dist
+  buildResources: build-resources
+appId: org.ellie.avatar
+productName: Ellie
+files:
+  - filter:
+      - electron/**/*
+      - server/**/*
+      - apps/ellie-web/dist/**/*
+      - package.json
+extraResources:
+  - from: server
+    to: server
+  - filter:
+      - .env
+win:
+  target: nsis
+  icon: docs/icons/ellie.ico
+  artifactName: Ellie-Setup-${version}.exe
+nsis:
+  oneClick: true
+  createDesktopShortcut: true
+  shortcutName: Ellie
+electronVersion: 31.7.7
