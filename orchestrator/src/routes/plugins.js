@@ -6,12 +6,12 @@ export const pluginRouter = Router();
 pluginRouter.get("/", (_req, res) => {
   const plugins = loadPlugins().map((p) => ({
     name: p.name,
-    description: p.description || "",
+    description: p.description || "", 
   }));
   res.json({ plugins });
 });
 
-pluginRouter.post(":name", async (req, res) => {
+pluginRouter.post("/:name", async (req, res) => {
   const name = req.params.name;
   const plugins = loadPlugins();
   const plugin = plugins.find((p) => p.name === name);
