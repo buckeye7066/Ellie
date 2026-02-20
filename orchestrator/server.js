@@ -5,6 +5,7 @@ import { memoryRouter } from "./src/routes/memory.js";
 import { fileRouter } from "./src/routes/file.js";
 import { internetRouter } from "./src/routes/internet.js";
 import { pluginRouter } from "./src/routes/plugins.js";
+import { llmRouter } from "./src/routes/llm.js";
 
 const app = express();
 app.use(json({ limit: "10mb" }));
@@ -17,6 +18,7 @@ app.use("/memory", memoryRouter);
 app.use("/file", fileRouter);
 app.use("/internet", internetRouter);
 app.use("/plugins", pluginRouter);
+app.use("/llm", llmRouter);
 
 const PORT = Number(process.env.ELLIE_ORCH_PORT || 3005);
 app.listen(PORT, () => {
